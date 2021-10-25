@@ -1,3 +1,23 @@
+var chosenHoles = 'front'
+let players = []
+let gameInfo = {}
+function changeHoles(selected) {
+    chosenHoles = selected
+}
+
+function start() {
+    players = []
+    for (let i = 0; i < 4; i++) {
+        if (document.getElementById(`player${i + 1}`).value !== '') {
+            players.push(document.getElementById(`player${i + 1}`).value)
+        }
+    }
+    gameInfo['players'] = players
+    gameInfo['type'] = chosenHoles
+    window.location.href = "./cards.html"
+}
+
+//--------------------------------
 const api_url = 'https://golf-courses-api.herokuapp.com/courses/11819';
 async function getApi(url) {
     const response = await fetch(url);
@@ -37,7 +57,7 @@ function showDistances(data, fob) {
     //loop through the holes selected and show the values
     let count = 0
     for (let b = 0; b < holesSelected.length; b++) {
-        console.log(holesSelected[b])
+        //console.log(holesSelected[b])
         for (let c = 0; c < holesSelected[b].teeBoxes.length; c++) {
             //console.log(holesSelected[b].teeBoxes[c].teeType + count);
             document.getElementById(`${holesSelected[b].teeBoxes[c].teeType}${count}`).innerText = holesSelected[b].teeBoxes[c].yards
