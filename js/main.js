@@ -17,20 +17,32 @@ function processData(data) {
 }
 
 function showDistances(data, fob) {
+    //pick the holes selected: front, back or all
+    let holesSelected = []
     if (fob == 'front') {
         for (a = 0; a < data.length - 9; a++) {
-            console.log(data[a])
+            holesSelected.push(data[a])
         }
     }
     else if (fob == 'back') {
-        for (a = 8; a < data.length; a++) {
-            console.log(data[a])
+        for (a = 9; a < data.length; a++) {
+            holesSelected.push(data[a])
         }
     }
     else {
         for (a = 0; a < data.length; a++) {
-            console.log(data[a])
+            holesSelected.push(data[a])
         }
     }
-    //console.log(data)
+    //loop through the holes selected and show the values
+    let count = 0
+    for (let b = 0; b < holesSelected.length; b++) {
+        console.log(holesSelected[b])
+        for (let c = 0; c < holesSelected[b].teeBoxes.length; c++) {
+            //console.log(holesSelected[b].teeBoxes[c].teeType + count);
+            document.getElementById(`${holesSelected[b].teeBoxes[c].teeType}${count}`).innerText = holesSelected[b].teeBoxes[c].yards
+        }
+        count += 1
+    }
+
 }
