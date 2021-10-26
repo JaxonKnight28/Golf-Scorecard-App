@@ -1,22 +1,23 @@
-var chosenHoles = 'front'
-let players = []
-let gameInfo = {}
-function changeHoles(selected) {
-    chosenHoles = selected
-}
+// var chosenHoles = 'front'
+// let players = []
+// let gameInfo = {}
+// function changeHoles(selected) {
+//     chosenHoles = selected
+// }
 
-function start() {
-    players = []
-    for (let i = 0; i < 4; i++) {
-        if (document.getElementById(`player${i + 1}`).value !== '') {
-            players.push(document.getElementById(`player${i + 1}`).value)
-        }
-    }
-    gameInfo['players'] = players
-    gameInfo['type'] = chosenHoles
-    window.location.href = "./cards.html"
-}
+// function start() {
+//     players = []
+//     for (let i = 0; i < 4; i++) {
+//         if (document.getElementById(`player${i + 1}`).value !== '') {
+//             players.push(document.getElementById(`player${i + 1}`).value)
+//         }
+//     }
+//     gameInfo['players'] = players
+//     gameInfo['type'] = chosenHoles
+//     window.location.href = "./cards.html"
+// }
 
+console.log(gameInfo)
 //--------------------------------
 const api_url = 'https://golf-courses-api.herokuapp.com/courses/11819';
 async function getApi(url) {
