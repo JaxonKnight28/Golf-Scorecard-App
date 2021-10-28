@@ -40,16 +40,37 @@ function start() {
 
     //loops through and creates the cards for each player
     function loadCards(holeInfo) {
+        //gets the front, back, or all 18 holes
+        let filteredHoles = []
+        //checks if the front 9 were picked and if true gets the first nine
+        if (gameInfo['holes'] == 'front') {
+            for (let a = 0; a < holeInfo.holes.length - 9; a++) {
+                filteredHoles.push(holeInfo.holes[a])
+            }
+        }
+        //checks if the back nine were picked and if true gets those
+        else if (gameInfo['holes'] == 'back') {
+            for (let a = 9; a < holeInfo.holes.length; a++) {
+                filteredHoles.push(holeInfo.holes[a])
+            }
+        }
+        //if not front or back gets all of them
+        else {
+            for (let a = 0; a < holeInfo.holes.length; a++) {
+                filteredHoles.push(holeInfo.holes[a])
+            }
+        }
+        //---------------------------------
         let chosenTeeYards = {};
-        for (let a = 0; a < holeInfo.holes.length; a++) {
-            for (let b = 0; b < holeInfo.holes[a].teeBoxes.length; b++) {
-                if (holeInfo.holes[a].teeBoxes[b].teeType == gameInfo['tee']) {
-                    chosenTeeYards[a] = holeInfo.holes[a].teeBoxes[b].yards
+        for (let a = 0; a < filteredHoles.length; a++) {
+            for (let b = 0; b < filteredHoles[a].teeBoxes.length; b++) {
+                if (filteredHoles[a].teeBoxes[b].teeType == gameInfo['tee']) {
+                    chosenTeeYards[a] = filteredHoles[a].teeBoxes[b].yards
                 }
 
             }
         }
-        console.log(chosenTeeYards);
+        //console.log(chosenTeeYards);
         for (let a = 0; a < players.length; a++) {
             document.getElementById(`mainCards${a}`).innerHTML = `<table class="table">
         <thead>
@@ -69,17 +90,17 @@ function start() {
             </tr>
         </thead>
         <tbody>
-            <tr id="proRow" class="table-dark">
+            <tr class="table-dark">
                 <th scope="row" id="teeChosen">${gameInfo['tee']}</th>
-                <td id="tee0">tee</td>
-                <td id="tee1">tee</td>
-                <td id="tee2">tee</td>
-                <td id="tee3">tee</td>
-                <td id="tee4">tee</td>
-                <td id="tee5">tee</td>
-                <td id="tee6">tee</td>
-                <td id="tee7">tee</td>
-                <td id="tee8">tee</td>
+                <td id="tee0">${chosenTeeYards[0]}</td>
+                <td id="tee1">${chosenTeeYards[1]}</td>
+                <td id="tee2">${chosenTeeYards[2]}</td>
+                <td id="tee3">${chosenTeeYards[3]}</td>
+                <td id="tee4">${chosenTeeYards[4]}</td>
+                <td id="tee5">${chosenTeeYards[5]}</td>
+                <td id="tee6">${chosenTeeYards[6]}</td>
+                <td id="tee7">${chosenTeeYards[7]}</td>
+                <td id="tee8">${chosenTeeYards[8]}</td>
             </tr>
 
         </tbody>
