@@ -62,14 +62,15 @@ function start() {
         //---------------------------------
         let chosenTeeYards = {}
         let chosenTeePars = {};
-        console.log(filteredHoles)
+        let parTotal = 0;
         //this loops through each of the chosen holes
         for (let a = 0; a < filteredHoles.length; a++) {
             for (let b = 0; b < filteredHoles[a].teeBoxes.length; b++) {
                 if (filteredHoles[a].teeBoxes[b].teeType == gameInfo['tee']) {
                     //gets the yards to each hole and assigns it to a variable
-                    chosenTeeYards[a] = filteredHoles[a].teeBoxes[b].yards
-                    chosenTeePars[a] = filteredHoles[a].teeBoxes[b].par
+                    chosenTeeYards[a] = filteredHoles[a].teeBoxes[b].yards;
+                    chosenTeePars[a] = filteredHoles[a].teeBoxes[b].par;
+                    parTotal += filteredHoles[a].teeBoxes[b].par;
                 }
 
             }
@@ -77,12 +78,13 @@ function start() {
         //if only 9 holes were selected, uses this html
         if (gameInfo['holes'] == 'front' || gameInfo['holes'] == 'back') {
 
-
             for (let a = 0; a < players.length; a++) {
-                document.getElementById(`mainCards${a}`).innerHTML = `<table class="table">
+                document.getElementById(`mainCards${a}`).innerHTML =
+                    `<h3><u>${players[a]}:</u></h3>
+            <table class="table">
             <thead>
             <div class="h4"></div>
-                <tr id="HoleNums">
+                <tr id="HoleNumbers">
                     <th scope="col">Hole</th>
                     <th scope="col">1</th>
                     <th scope="col">2</th>
@@ -120,7 +122,7 @@ function start() {
                     <td id="par6">${chosenTeePars[6]}</td>
                     <td id="par7">${chosenTeePars[7]}</td>
                     <td id="par8">${chosenTeePars[8]}</td>
-                    <td id="totalPar">total</td>
+                    <td id="totalPar">${parTotal}</td>
                 </tr>
                 <tr class="table-secondary">
                     <th scope="row" id="scores">${players[a]} scores</th>
@@ -143,10 +145,11 @@ function start() {
         //if all 18 holes are selected, uses this html
         else {
             for (let a = 0; a < players.length; a++) {
-                document.getElementById(`mainCards${a}`).innerHTML = `<table class="table">
+                document.getElementById(`mainCards${a}`).innerHTML =
+                    `<h3><u>${players[a]}:</u></h3>
+                <table class="table">
             <thead>
-            <div class="h4">${players[a]}</div>
-                <tr id="HoleNums">
+                <tr id="HoleNumbers">
                     <th scope="col">Hole</th>
                     <th scope="col">1</th>
                     <th scope="col">2</th>
@@ -184,7 +187,6 @@ function start() {
                     <td id="par6">${chosenTeePars[6]}</td>
                     <td id="par7">${chosenTeePars[7]}</td>
                     <td id="par8">${chosenTeePars[8]}</td>
-                    <td id="totalPar">total</td>
                 </tr>
                 <tr class="table-secondary">
                     <th scope="row" id="scores">${players[a]} scores</th>
@@ -198,7 +200,7 @@ function start() {
                     <td id="score7">score</td>
                     <td id="score8">score</td>
                 </tr>
-                <tr id="HoleNums">
+                <tr id="HoleNumbers">
                     <th scope="col">Hole</th>
                     <th scope="col">10</th>
                     <th scope="col">11</th>
@@ -209,7 +211,6 @@ function start() {
                     <th scope="col">16</th>
                     <th scope="col">17</th>
                     <th scope="col">18</th>
-                    <th scope="col">total</th>
                 </tr>
                 <tr class="table-dark">
                     <th scope="row" id="teeChosen">${gameInfo['tee']}</th>
@@ -234,7 +235,7 @@ function start() {
                     <td id="par6">${chosenTeePars[15]}</td>
                     <td id="par7">${chosenTeePars[16]}</td>
                     <td id="par8">${chosenTeePars[17]}</td>
-                    <td id="totalPar">total</td>
+                    <td id="totalPar">${parTotal}</td>
                 </tr>
                 <tr class="table-secondary">
                     <th scope="row" id="scores">${players[a]} scores</th>
@@ -254,6 +255,13 @@ function start() {
             </table>`
             }
         }
+        //get rid of the menu
+        document.getElementById('menu').style.display = 'none';
+        document.getElementById('resetButton').style.display = 'block';
 
     }
 }//end of function
+
+function reset() {
+    location.reload()
+}
