@@ -1,3 +1,4 @@
+let gameGoing = false;
 let chosenHoles = 'front';
 let chosenTee = 'champion';
 let players = [];
@@ -63,6 +64,9 @@ function start() {
         let chosenTeeYards = {}
         let chosenTeePars = {};
         let parTotal = 0;
+        let chosenTeeHcp = {};
+        let hcpTotal = 0;
+        console.log(filteredHoles)
         //this loops through each of the chosen holes
         for (let a = 0; a < filteredHoles.length; a++) {
             for (let b = 0; b < filteredHoles[a].teeBoxes.length; b++) {
@@ -71,6 +75,8 @@ function start() {
                     chosenTeeYards[a] = filteredHoles[a].teeBoxes[b].yards;
                     chosenTeePars[a] = filteredHoles[a].teeBoxes[b].par;
                     parTotal += filteredHoles[a].teeBoxes[b].par;
+                    chosenTeeHcp[a] = filteredHoles[a].teeBoxes[b].hcp
+                    hcpTotal += filteredHoles[a].teeBoxes[b].hcp
                 }
 
             }
@@ -111,6 +117,21 @@ function start() {
                     <td id="tee7">${chosenTeeYards[7]}</td>
                     <td id="tee8">${chosenTeeYards[8]}</td>
                 </tr>
+
+                <tr class="table-dark">
+                    <th scope="row" id="Handicap">Handicap</th>
+                    <td id="par0">${chosenTeeHcp[0]}</td>
+                    <td id="par1">${chosenTeeHcp[1]}</td>
+                    <td id="par2">${chosenTeeHcp[2]}</td>
+                    <td id="par3">${chosenTeeHcp[3]}</td>
+                    <td id="par4">${chosenTeeHcp[4]}</td>
+                    <td id="par5">${chosenTeeHcp[5]}</td>
+                    <td id="par6">${chosenTeeHcp[6]}</td>
+                    <td id="par7">${chosenTeeHcp[7]}</td>
+                    <td id="par8">${chosenTeeHcp[8]}</td>
+                    <td id="totalPar">${hcpTotal}</td>
+                </tr>
+
                 <tr class="table-dark">
                     <th scope="row" id="Par">Par</th>
                     <td id="par0">${chosenTeePars[0]}</td>
@@ -177,6 +198,19 @@ function start() {
                     <td id="tee8">${chosenTeeYards[8]}</td>
                 </tr>
                 <tr class="table-dark">
+                <th scope="row" id="Handicap">Handicap</th>
+                <td id="par0">${chosenTeeHcp[0]}</td>
+                <td id="par1">${chosenTeeHcp[1]}</td>
+                <td id="par2">${chosenTeeHcp[2]}</td>
+                <td id="par3">${chosenTeeHcp[3]}</td>
+                <td id="par4">${chosenTeeHcp[4]}</td>
+                <td id="par5">${chosenTeeHcp[5]}</td>
+                <td id="par6">${chosenTeeHcp[6]}</td>
+                <td id="par7">${chosenTeeHcp[7]}</td>
+                <td id="par8">${chosenTeeHcp[8]}</td>
+            </tr>
+
+                <tr class="table-dark">
                     <th scope="row" id="Par">Par</th>
                     <td id="par0">${chosenTeePars[0]}</td>
                     <td id="par1">${chosenTeePars[1]}</td>
@@ -223,6 +257,20 @@ function start() {
                     <td id="tee6">${chosenTeeYards[15]}</td>
                     <td id="tee7">${chosenTeeYards[16]}</td>
                     <td id="tee8">${chosenTeeYards[17]}</td>
+                </tr>
+
+                <tr class="table-dark">
+                    <th scope="row" id="Handicap">Handicap</th>
+                    <td id="par0">${chosenTeeHcp[0]}</td>
+                    <td id="par1">${chosenTeeHcp[1]}</td>
+                    <td id="par2">${chosenTeeHcp[2]}</td>
+                    <td id="par3">${chosenTeeHcp[3]}</td>
+                    <td id="par4">${chosenTeeHcp[4]}</td>
+                    <td id="par5">${chosenTeeHcp[5]}</td>
+                    <td id="par6">${chosenTeeHcp[6]}</td>
+                    <td id="par7">${chosenTeeHcp[7]}</td>
+                    <td id="par8">${chosenTeeHcp[8]}</td>
+                    <td id="totalPar">${hcpTotal}</td>
                 </tr>
                 <tr class="table-dark">
                     <th scope="row" id="Par">Par</th>
