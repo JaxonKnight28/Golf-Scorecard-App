@@ -5,6 +5,7 @@ let players = [];
 var gameInfo = {};
 var DATA;
 
+
 function changeTee(selected) {
     chosenTee = selected;
 }
@@ -66,7 +67,6 @@ function start() {
         let parTotal = 0;
         let chosenTeeHcp = {};
         let hcpTotal = 0;
-        console.log(filteredHoles)
         //this loops through each of the chosen holes
         for (let a = 0; a < filteredHoles.length; a++) {
             for (let b = 0; b < filteredHoles[a].teeBoxes.length; b++) {
@@ -81,6 +81,10 @@ function start() {
 
             }
         }
+        //------------------------
+
+
+        //------------------------
         //if only 9 holes were selected, uses this html
         if (gameInfo['holes'] == 'front' || gameInfo['holes'] == 'back') {
 
@@ -147,16 +151,16 @@ function start() {
                 </tr>
                 <tr class="table-secondary">
                     <th scope="row" id="scores">${players[a]} scores</th>
-                    <td id="score0">score</td>
-                    <td id="score1">score</td>
-                    <td id="score2">score</td>
-                    <td id="score3">score</td>
-                    <td id="score4">score</td>
-                    <td id="score5">score</td>
-                    <td id="score6">score</td>
-                    <td id="score7">score</td>
-                    <td id="score8">score</td>
-                    <td id="total">total</td>
+                    <td id="score0"><input type="number" name="tests" class="form-control" id="${players[a]}-score0"></td>
+                    <td id="score1"><input type="number" class="form-control" id="${players[a]}-score1"</td>
+                    <td id="score2"><input type="number" class="form-control" id="${players[a]}-score2"></td>
+                    <td id="score3"><input type="number" class="form-control" id="${players[a]}-score3"></td>
+                    <td id="score4"><input type="number" class="form-control" id="${players[a]}-score4"></td>
+                    <td id="score5"><input type="number" class="form-control" id="${players[a]}-score5"></td>
+                    <td id="score6"><input type="number" class="form-control" id="${players[a]}-score6"></td>
+                    <td id="score7"><input type="number" class="form-control" id="${players[a]}-score7"></td>
+                    <td id="score8"><input type="number" class="form-control" id="${players[a]}-score8"></td>
+                    <td id="${players[a]}-total">total</td>
                 </tr>
 
             </tbody>
@@ -224,15 +228,15 @@ function start() {
                 </tr>
                 <tr class="table-secondary">
                     <th scope="row" id="scores">${players[a]} scores</th>
-                    <td id="score0">score</td>
-                    <td id="score1">score</td>
-                    <td id="score2">score</td>
-                    <td id="score3">score</td>
-                    <td id="score4">score</td>
-                    <td id="score5">score</td>
-                    <td id="score6">score</td>
-                    <td id="score7">score</td>
-                    <td id="score8">score</td>
+                    <td id="score0"><input type="number" class="form-control" id="${players[a]}-score0"></td>
+                    <td id="score1"><input type="number" class="form-control" id="${players[a]}-score1"</td>
+                    <td id="score2"><input type="number" class="form-control" id="${players[a]}-score2"></td>
+                    <td id="score3"><input type="number" class="form-control" id="${players[a]}-score3"></td>
+                    <td id="score4"><input type="number" class="form-control" id="${players[a]}-score4"></td>
+                    <td id="score5"><input type="number" class="form-control" id="${players[a]}-score5"></td>
+                    <td id="score6"><input type="number" class="form-control" id="${players[a]}-score6"></td>
+                    <td id="score7"><input type="number" class="form-control" id="${players[a]}-score7"></td>
+                    <td id="score8"><input type="number" class="form-control" id="${players[a]}-score8"></td>
                 </tr>
                 <tr id="HoleNumbers">
                     <th scope="col">Hole</th>
@@ -287,16 +291,16 @@ function start() {
                 </tr>
                 <tr class="table-secondary">
                     <th scope="row" id="scores">${players[a]} scores</th>
-                    <td id="score0">score</td>
-                    <td id="score1">score</td>
-                    <td id="score2">score</td>
-                    <td id="score3">score</td>
-                    <td id="score4">score</td>
-                    <td id="score5">score</td>
-                    <td id="score6">score</td>
-                    <td id="score7">score</td>
-                    <td id="score8">score</td>
-                    <td id="total">total</td>
+                    <td id="score9"><input type="number" class="form-control" id="${players[a]}-score9"></td>
+                    <td id="score10"><input type="number" class="form-control" id="${players[a]}-score10"</td>
+                    <td id="score11"><input type="number" class="form-control" id="${players[a]}-score11"></td>
+                    <td id="score12"><input type="number" class="form-control" id="${players[a]}-score12"></td>
+                    <td id="score13"><input type="number" class="form-control" id="${players[a]}-score13"></td>
+                    <td id="score14"><input type="number" class="form-control" id="${players[a]}-score14"></td>
+                    <td id="score15"><input type="number" class="form-control" id="${players[a]}-score15"></td>
+                    <td id="score16"><input type="number" class="form-control" id="${players[a]}-score16"></td>
+                    <td id="score17"><input type="number" class="form-control" id="${players[a]}-score17"></td>
+                    <td id="${players[a]}-total">total</td>
                 </tr>
             
             </tbody>
@@ -307,9 +311,40 @@ function start() {
         document.getElementById('menu').style.display = 'none';
         document.getElementById('resetButton').style.display = 'block';
 
-    }
-}//end of function
+        //puts zeros in every score box by default
+        for (let a = 0; a < players.length; a++) {
+            for (let b = 0; b < filteredHoles.length; b++) {
+                document.getElementById(`${players[a]}-score${b}`).value = 0;
+            }
+        }
+        calcScores()
+        //adds up the scores
+        function calcScores() {
+            let total = 0
+
+            for (let a = 0; a < players.length; a++) {
+                total = 0
+                for (let b = 0; b < filteredHoles.length; b++) {
+                    total += parseInt(document.getElementById(`${players}-score${a}`).value);
+                }
+                document.getElementById(`${players}-total`).innerText = total;
+                console.log('test')
+            }
+
+        }
+
+
+
+    }//end of card function
+}//main of function
 
 function reset() {
     location.reload()
 }
+//---------------------
+// const input = document.querySelector('input');
+// input.addEventListener('input', test());
+// function test() {
+//     console.log('TestFunction')
+// }
+
