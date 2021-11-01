@@ -13,6 +13,7 @@
 <body>
     <div id="resetButton" class="container" style="display: none;">
         <button type="button" class="btn btn-danger" onclick="reset()">RESET</button>
+        <h3 id="courseTitle" class="pt-3"></h3>
     </div>
     <div id="menu">
         <div class="container">
@@ -78,6 +79,29 @@
                     <input class="form-check-input" type="radio" name="second" id="women">
                     <label class="form-check-label" for="front">
                         Women
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <div class="h2">Select Course:</div>
+                <div class="h5">(Thanksgiving Point, Fox Hollow, or Spanish Oaks</div>
+                <div class="form-check" onclick="changeCourse('Thanksgiving Point')">
+                    <input class="form-check-input" type="radio" name="third" id="thanksgiving" checked>
+                    <label class="form-check-label" for="front">
+                        Thanksgiving Point
+                    </label>
+                </div>
+                <div class="form-check" onclick="changeCourse('Fox Hollow')">
+                    <input class="form-check-input" type="radio" name="third" id="fox">
+                    <label class="form-check-label" for="back">
+                        Fox Hollow
+                    </label>
+                </div>
+                <div class="form-check" onclick="changeCourse('Spanish Oaks')">
+                    <input class="form-check-input" type="radio" name="third" id="spanish">
+                    <label class="form-check-label" for="all">
+                        Spanish Oaks
                     </label>
                 </div>
             </div>

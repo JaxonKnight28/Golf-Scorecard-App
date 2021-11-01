@@ -1,9 +1,11 @@
 let gameGoing = false;
 let chosenHoles = 'front';
 let chosenTee = 'champion';
+var chosenCourse = 'Thanksgiving Point'
 let players = [];
 var gameInfo = {};
 var DATA;
+var ID = 11819
 
 
 function changeTee(selected) {
@@ -11,6 +13,18 @@ function changeTee(selected) {
 }
 function changeHoles(selected) {
     chosenHoles = selected;
+}
+function changeCourse(selected) {
+    chosenCourse = selected;
+    if (selected == 'Thanksgiving Point') {
+        ID = 11819;
+    }
+    else if (selected == 'Fox Hollow') {
+        ID = 18300;
+    }
+    else {
+        ID = 19002;
+    }
 }
 //runs after the start button is pressed-------------------------------
 
@@ -28,6 +42,7 @@ function start() {
     gameInfo['tee'] = chosenTee;
     gameInfo['holes'] = chosenHoles;
 
+
     //-------- This is the API Request
     function listener() {
         DATA = JSON.parse(this.responseText).data;
@@ -35,7 +50,7 @@ function start() {
     }
     var RequestAPI = new XMLHttpRequest();
     RequestAPI.addEventListener('load', listener);
-    RequestAPI.open('GET', 'https://golf-courses-api.herokuapp.com/courses/11819');
+    RequestAPI.open('GET', `https://golf-courses-api.herokuapp.com/courses/${ID}`);
     RequestAPI.send();
     //--------
 
@@ -73,8 +88,10 @@ function start() {
                 if (filteredHoles[a].teeBoxes[b].teeType == gameInfo['tee']) {
                     //gets the yards to each hole and assigns it to a variable
                     chosenTeeYards[a] = filteredHoles[a].teeBoxes[b].yards;
+                    //gets the par for the course selected and creates a total par variable
                     chosenTeePars[a] = filteredHoles[a].teeBoxes[b].par;
                     parTotal += filteredHoles[a].teeBoxes[b].par;
+                    //gets the handicap and the total handicap
                     chosenTeeHcp[a] = filteredHoles[a].teeBoxes[b].hcp;
                     hcpTotal += filteredHoles[a].teeBoxes[b].hcp;
                 }
@@ -307,11 +324,12 @@ function start() {
             </table>`;
             }
         }
-        //get rid of the menu
+        //get rid of the menu and displays the chosen course
         document.getElementById('menu').style.display = 'none';
         document.getElementById('resetButton').style.display = 'block';
+        document.getElementById('courseTitle').innerText = chosenCourse;
 
-        //puts zeros in every score box by default
+        //puts zeros in every score box by default and creates an event listener for changes in score
         for (let a = 0; a < players.length; a++) {
             for (let b = 0; b < filteredHoles.length; b++) {
                 document.getElementById(`${players[a]}-score${b}`).value = 0;
@@ -322,10 +340,11 @@ function start() {
         //adds up the scores
         function calcScores() {
             let total = 0;
-
+            //loops through each player and the holes adding their score
             for (let a = 0; a < players.length; a++) {
                 total = 0;
                 for (let b = 0; b < filteredHoles.length; b++) {
+                    //adds each boxes score to the total
                     total += parseInt(document.getElementById(`${players[a]}-score${b}`).value);
                 }
                 document.getElementById(`${players[a]}-total`).innerText = total;
@@ -336,6 +355,7 @@ function start() {
     }//end of card function
 }//main of function
 
+//runs when the reset button is clicked
 function reset() {
     location.reload();
 }
