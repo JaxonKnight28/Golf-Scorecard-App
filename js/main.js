@@ -1,11 +1,11 @@
 let gameGoing = false;
 let chosenHoles = 'front';
 let chosenTee = 'champion';
-var chosenCourse = 'Thanksgiving Point'
+var chosenCourse = 'Thanksgiving Point';
 let players = [];
 var gameInfo = {};
 var DATA;
-var ID = 11819
+var ID = 11819;
 
 
 function changeTee(selected) {
@@ -122,7 +122,7 @@ function start() {
                     <th scope="col">7</th>
                     <th scope="col">8</th>
                     <th scope="col">9</th>
-                    <th scope="col">total</th>
+                    <th scope="col">Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -202,7 +202,7 @@ function start() {
                     <th scope="col">7</th>
                     <th scope="col">8</th>
                     <th scope="col">9</th>
-                    <th scope="col">total</th>
+                    <th scope="col">Total</th>
                 </tr>
             </thead>
             <tbody>
