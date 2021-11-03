@@ -77,6 +77,7 @@ function start() {
             }
         }
         //---------------------------------
+        let holeNumbers = [];
         let chosenTeeYards = {};
         let chosenTeePars = {};
         let parTotal = 0;
@@ -94,14 +95,12 @@ function start() {
                     //gets the handicap and the total handicap
                     chosenTeeHcp[a] = filteredHoles[a].teeBoxes[b].hcp;
                     hcpTotal += filteredHoles[a].teeBoxes[b].hcp;
+                    //gets the hole number for if user selects the front or back
+                    holeNumbers.push(filteredHoles[a].hole);
                 }
 
             }
         }
-        //------------------------
-
-
-        //------------------------
         //if only 9 holes were selected, uses this html
         if (gameInfo['holes'] == 'front' || gameInfo['holes'] == 'back') {
 
@@ -113,15 +112,15 @@ function start() {
             <div class="h4"></div>
                 <tr id="HoleNumbers">
                     <th scope="col">Hole</th>
-                    <th scope="col">1</th>
-                    <th scope="col">2</th>
-                    <th scope="col">3</th>
-                    <th scope="col">4</th>
-                    <th scope="col">5</th>
-                    <th scope="col">6</th>
-                    <th scope="col">7</th>
-                    <th scope="col">8</th>
-                    <th scope="col">9</th>
+                    <th scope="col">${holeNumbers[0]}</th>
+                    <th scope="col">${holeNumbers[1]}</th>
+                    <th scope="col">${holeNumbers[2]}</th>
+                    <th scope="col">${holeNumbers[3]}</th>
+                    <th scope="col">${holeNumbers[4]}</th>
+                    <th scope="col">${holeNumbers[5]}</th>
+                    <th scope="col">${holeNumbers[6]}</th>
+                    <th scope="col">${holeNumbers[7]}</th>
+                    <th scope="col">${holeNumbers[8]}</th>
                     <th scope="col">Total</th>
                 </tr>
             </thead>
@@ -347,6 +346,7 @@ function start() {
                     //adds each boxes score to the total
                     total += parseInt(document.getElementById(`${players[a]}-score${b}`).value);
                 }
+                //shows the total
                 document.getElementById(`${players[a]}-total`).innerText = total;
             }
 
